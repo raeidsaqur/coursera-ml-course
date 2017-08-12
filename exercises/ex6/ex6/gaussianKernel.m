@@ -16,9 +16,15 @@ sim = 0;
 %
 %
 
+x_delta_sq = sum((x1 - x2).^2);
 
+gx = - (x_delta_sq)/(2 * sigma^2);
 
+fprintf('gx = %f\n', gx);
 
+sim = exp(gx);
+
+fprintf('sim = %f\n', sim);
 
 
 % =============================================================
