@@ -23,10 +23,41 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+steps = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+n = length(steps);
 
+minError = Inf;
+minC = Inf;
+minSigma = Inf;
 
+for i=1:n
+	c = steps(i);
+	for j=1:n
+		sig = steps(j);
+		model = svmTrain(X, y, c, @(x1, x2) gaussianKernel(x1, x2, sig));
+		predictions = svmPredict(model, Xval);
+		%See the model's prediction accuracy using labels (yval) and cache the error
+		prediction_error = mean(double(predictions ~= yval));
+		
+		fprintf('\n--------------\n');
+		fprintf('c = %f\tsig = %f\tprediction_error=%f\n', c, sig, prediction_error);
+		fprintf('\n--------------\n');
 
+		if prediction_error < minError
+			%Update best results of C and Sigma found so far.
+			minError = prediction_error;
+			minC = c;
+			minSigma = sig;
+		end
+	end
+end
 
+fprintf('minC = %f\n', minC);
+fprintf('minSigma = %f\n', minSigma);
+
+%Update the return values
+C = minC;
+sigma = minSigma;
 
 
 % =========================================================================

@@ -136,6 +136,7 @@ pause;
 %  This is a different dataset that you can use to experiment with. Try
 %  different values of C and sigma here.
 % 
+fprintf('Part 7: Training SVM with RBF Kernel (Dataset 3)\n');
 
 % Load from ex6data3: 
 % You will have X, y in your environment
