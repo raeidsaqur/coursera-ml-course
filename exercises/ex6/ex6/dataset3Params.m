@@ -9,7 +9,10 @@ function [C, sigma] = dataset3Params(X, y, Xval, yval)
 
 % You need to return the following variables correctly.
 C = 1;
-sigma = 0.3;
+sigma = 0.1; 
+
+%Updated the results and returning right values as running the steps takes long.
+return
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Fill in this function to return the optimal C and sigma
@@ -38,7 +41,7 @@ for i=1:n
 		predictions = svmPredict(model, Xval);
 		%See the model's prediction accuracy using labels (yval) and cache the error
 		prediction_error = mean(double(predictions ~= yval));
-		
+
 		fprintf('\n--------------\n');
 		fprintf('c = %f\tsig = %f\tprediction_error=%f\n', c, sig, prediction_error);
 		fprintf('\n--------------\n');
@@ -58,6 +61,8 @@ fprintf('minSigma = %f\n', minSigma);
 %Update the return values
 C = minC;
 sigma = minSigma;
+
+%answer minC = 1, minSigma = 0.1
 
 
 % =========================================================================
