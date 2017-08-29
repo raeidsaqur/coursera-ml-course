@@ -10,6 +10,7 @@ K = size(centroids, 1);
 
 % You need to return the following variables correctly.
 idx = zeros(size(X,1), 1);
+fprintf('In function script: Finding closest centroids.\n\n');
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Go over every example, find its closest centroid, and store
@@ -21,11 +22,18 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
-
-
+for i=1:size(idx)
+    xi = X(i, :)
+    min_distance = inf
+    for j=1:K
+        cj = centroids(j, :)
+        d = sum((xi - cj).^2)
+        if d < min_distance
+            min_distance = d
+            idx(i) = j
+        end
+    end
+end
 
 % =============================================================
 

@@ -31,6 +31,8 @@ fprintf('Finding closest centroids.\n\n');
 % Load an example dataset that we will be using
 load('ex7data2.mat');
 
+
+
 % Select an initial set of centroids
 K = 3; % 3 Centroids
 initial_centroids = [3 3; 6 2; 8 5];
