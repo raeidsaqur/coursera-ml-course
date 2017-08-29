@@ -27,10 +27,25 @@ centroids = zeros(K, n);
 %
 
 
-
-
-
-
+for k=1:K
+    num_points_in_Ck = sum(idx==k)
+    if num_points_in_Ck == 0
+        continue;
+    end
+    sum_points_in_Ck = zeros(1, n)
+    
+    %Get sum of all training samples in that centroid k 
+    for i=1:m
+        if idx(i)==k
+            sum_points_in_Ck = sum_points_in_Ck + X(i, :)
+        end
+    end
+    
+    Ck_mean = (1/num_points_in_Ck) * sum_points_in_Ck
+    fprintf('\nCk_mean = %f', Ck_mean)
+    centroids(k, :) = Ck_mean
+    
+end
 
 
 % =============================================================
