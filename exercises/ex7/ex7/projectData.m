@@ -7,7 +7,10 @@ function Z = projectData(X, U, K)
 %
 
 % You need to return the following variables correctly.
-Z = zeros(size(X, 1), K);
+m = size(X, 1);
+Z = zeros(m, K);
+
+
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the projection of the data using only the top K 
@@ -18,6 +21,14 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+U_reduce = U(:, 1:K);
+
+% Loop through all examples and project onto 1D in z space.
+for i = 1:m
+    x_i = X(i, :)';
+    z_i = x_i' * U_reduce; % [1 1024] * [1024 16] -> [1 16]
+    Z(i, :) = z_i;
+end
 
 
 
